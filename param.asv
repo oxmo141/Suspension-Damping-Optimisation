@@ -1,0 +1,22 @@
+%All Parameters of the FSAE Car
+%% Distributions
+weight_distribution = 50.95; %front bias
+
+%% Unsprung mass
+frontunsprung.m = 12.15;
+rearunsprung.m = 13.35;
+
+%% Car/ Sprung (Appendix A: diagram of car parameters)
+car.wheelbase = 1.558;
+car.track = 1.21;
+car.cgh = 0.256;
+car.m = 270;
+car.a = car.wheelbase/2 - car.wheelbase*(weight_distribution/100 - 0.5);
+car.b = car.wheelbase-car.a;
+
+% Assume sprung corner weight is equally distributed
+car.m_sprung = (car.m - 2*frontunsprung.m - 2*rearunsprung.m)/4;
+
+%% Stiffness Parameters
+front.ks = 225 * 175.12684;
+rear. ks =
