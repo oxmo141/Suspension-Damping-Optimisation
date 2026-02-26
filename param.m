@@ -33,3 +33,4 @@ rear.Kr = (rear.kw*car.Kt) / (rear.kw+car.Kt);
 %% Natural Frequency and Critical Damping
 frontsprung.omega = (1/(2*pi)) * sqrt(front.Kr/car.m_sprung);
 rearsprung.omega =  (1/(2*pi)) * sqrt(rear.Kr/car.m_sprung);
+
