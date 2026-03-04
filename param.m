@@ -1,8 +1,8 @@
-%All Parameters of the FSAE Car
+%% All Parameters of the FSAE Car
 %% Distributions
 weight_distribution = 50.95; %front bias
 
-%% Unsprung mass
+%% Unsprung mass of 1 corner
 frontunsprung.m = 12.15;
 rearunsprung.m = 13.35;
 
@@ -12,11 +12,12 @@ car.track = 1.21;
 car.cgh = 0.256;
 car.m = 270;
 
-car.a = car.wheelbase/2 - car.wheelbase*(weight_distribution/100 - 0.5);
-car.b = car.wheelbase-car.a;
+car.b = (car.wheelbase * car.m * weight_distribution/100) / car.m;
+car.a = car.wheelbase - car.b;
 
-% Assume sprung corner weight is equally distributed
-car.m_sprung = (car.m - 2*frontunsprung.m - 2*rearunsprung.m)/4;
+%% Sprung mass of 1 corner
+frontsprung.m = (0.5 * (weight_distribution/100) * car.m) - frontunsprung.m;
+rearsprung.m = (0.5 * ((100-weight_distribution)/100) * car.m) - rearunsprung.m;
 
 %% Suspension Stiffness 
 front.ks = 225 * 175.12684; % spring rate
@@ -31,6 +32,6 @@ front.Kr = (front.kw*car.Kt) / (front.kw+car.Kt); %ride rate
 rear.Kr = (rear.kw*car.Kt) / (rear.kw+car.Kt);
 
 %% Natural Frequency and Critical Damping
-frontsprung.omega = (1/(2*pi)) * sqrt(front.Kr/car.m_sprung);
-rearsprung.omega =  (1/(2*pi)) * sqrt(rear.Kr/car.m_sprung);
+% frontsprung.omega = (1/(2*pi)) * sqrt(front.Kr/car.m_sprung);
+% rearsprung.omega =  (1/(2*pi)) * sqrt(rear.Kr/car.m_sprung);
 

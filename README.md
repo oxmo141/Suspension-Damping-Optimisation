@@ -1,2 +1,2 @@
 # Suspension-Damping-Optimisation
-Exploration of equation of motion on a FSAE car. Test
+Exploration of equation of motion on a FSAE car.
