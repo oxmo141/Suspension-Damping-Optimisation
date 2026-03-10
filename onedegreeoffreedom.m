@@ -30,3 +30,4 @@ for j = 1:length(susp)
     results.(susp{j}).omega_natural = sqrt(axl.kw/s.m);
     
 end
+%

@@ -19,7 +19,9 @@ car.a = car.wheelbase - car.b;
 frontsprung.m = (0.5 * (weight_distribution/100) * car.m) - frontunsprung.m;
 rearsprung.m = (0.5 * ((100-weight_distribution)/100) * car.m) - rearunsprung.m;
 
-%% Suspension Stiffness 
+%% Chassis and Suspension Stiffness 
+car.TR = (3047.62 + 2912.586)/2; 
+
 front.ks = 225 * 175.12684; % spring rate
 rear.ks = 200 * 175.12684;
 car.Kt = (10^3)/0.0122; % tyre radial rate
