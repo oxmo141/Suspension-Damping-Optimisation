@@ -1,4 +1,6 @@
 %% All Parameters of the FSAE Car
+g = 9.81;
+
 %% Distributions
 weight_distribution = 50.95; %front bias
 
@@ -11,6 +13,8 @@ car.wheelbase = 1.558;
 car.track = 1.21;
 car.cgh = 0.256;
 car.m = 270;
+car.r_wheel = 0.23707;
+car.m_sprung = car.m - 2*frontunsprung.m - 2*rearunsprung.m;
 
 car.b = (car.wheelbase * car.m * weight_distribution/100) / car.m;
 car.a = car.wheelbase - car.b;
@@ -32,6 +36,17 @@ front.kw = front.ks*front.MR^2; % wheel rate
 rear.kw = rear.ks*rear.MR^2;
 front.Kr = (front.kw*car.Kt) / (front.kw+car.Kt); %ride rate
 rear.Kr = (rear.kw*car.Kt) / (rear.kw+car.Kt);
+
+front.RC = 0.035;
+rear.RC = 0.050;
+car.h_roll = car.cgh - ((car.a*front.RC + car.b*rear.RC)/(car.a+car.b));
+
+front.ks_roll = 0.5*front.kw*car.track^2; % spring roll rate Nm/rad
+rear.ks_roll = 0.5*rear.kw*car.track^2;
+front.ARB = 0;
+rear.ARB = 0;
+front.k_roll = front.ks_roll+front.ARB;
+rear.k_roll = rear.ks_roll+rear.ARB;
 
 %% Natural Frequency and Critical Damping
 % frontsprung.omega = (1/(2*pi)) * sqrt(front.Kr/car.m_sprung);

@@ -1,4 +1,6 @@
 %% Quarter Car Vibration Model: Appendix B assume no damping from tyre
+clear; clc
+
 %% Parameters
 param;
 front.cs = 3000; % [Ns/m]

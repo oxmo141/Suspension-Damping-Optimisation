@@ -1,6 +1,7 @@
 %% 1/8 car model, simplest model of body motion: Appendix C
 % assumption that the unsprung mass is insignificant compared to the sprung
 % mass of each corner.
+clear; clc
 
 %% Parameters
 param;
