@@ -24,10 +24,13 @@ frontsprung.m = (0.5 * (weight_distribution/100) * car.m) - frontunsprung.m;
 rearsprung.m = (0.5 * ((100-weight_distribution)/100) * car.m) - rearunsprung.m;
 
 %% Chassis and Suspension Stiffness 
-car.TR = (3047.62 + 2912.586)/2; 
+car.TR = (3047.62 + 2912.586)/2 * 180/pi; 
 
-front.ks = 225 * 175.12684; % spring rate
-rear.ks = 200 * 175.12684;
+front.springs = [200, 225, 250, 300];
+rear.springs = [200, 225, 250, 300];
+
+front.ks = front.springs(2) * 175.12684; % spring rate
+rear.ks = rear.springs(1) * 175.12684;
 car.Kt = (10^3)/0.0122; % tyre radial rate
 front.MR = 1.0; % motion ratio of coil over
 rear.MR = 1.0;
