@@ -53,7 +53,7 @@ rear.k_roll = zeros(size(front.ARB));
 front.k_roll = front.ARB + front.ks_roll;
 rear.k_roll = rear.ARB + rear.ks_roll;
 LDT_val = zeros(size(front.ARB));
-%%
+
 for j = 1:length(front.k_roll)
     for i = 1:length(front.k_roll)
         
@@ -63,26 +63,35 @@ for j = 1:length(front.k_roll)
         R = A\ M;
     
         LDT.front_lat = 1/car.track * (car.TR*R(3) + ...
-            (1-weight_distribution(j))*Moment.sprung + Moment.frontunsprung);
+            (weight_distribution(j))*Moment.sprung + Moment.frontunsprung);
         LDT.rear_lat = 1/car.track * (-car.TR*R(3) + ...
-            weight_distribution(j)*Moment.sprung + Moment.rearunsprung);
-        LDT_val(j, i) = LDT.front_lat / (LDT.front_lat+LDT.rear_lat);
+            (1 - weight_distribution(j))*Moment.sprung + Moment.rearunsprung);
+        LDT_val(i, j) = LDT.front_lat / (LDT.front_lat+LDT.rear_lat);
     
     end
 end
 
 LSD = front.k_roll ./ (front.k_roll+rear.k_roll);
 
-[WD_mesh, LSD_mesh] = meshgrid(weight_distribution*100, LSD*100);
-contourf(WD_mesh,LSD_mesh,LDT_val*100,10)
-xlabel('WD% front bias')
-ylabel('RD% front bias')
-title('LLTD Distribution% front bias')
-colorbar
+%% Meshgrid
+[WD_mesh, RSD_mesh] = meshgrid(weight_distribution*100, LSD*100);
 
-% figure (1)
-% plot(1:100, LDT_val);
-% xlabel('iteration');
-% ylabel('Lateral Load Transfer Distribution');
-% title('Lateral Load Transfer Distribution vs iteration');
-% grid on;
+figure
+
+% contour lines only
+[C,h] = contour(WD_mesh, RSD_mesh, LDT_val*100, 10, 'LineWidth',1.5);
+
+colormap(jet)
+
+xlabel('Static weight dist front [%]')
+ylabel('Stiffness dist front [%]')
+title(sprintf('Torsional stiffness: %.0f [Nm/deg]', car.TR * pi/180))
+
+grid on
+set(gca,'GridLineStyle',':','LineWidth',1.2)
+
+% colorbar
+c = colorbar;
+ylabel(c,'Front Lateral Load Transfer Distribution [%]')
+
+xlim([0 100])
