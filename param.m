@@ -1,4 +1,4 @@
-%% All Parameters of the FSAE Car
+%% All Parameters of the FSAE Car f
 g = 9.81;
 
 %% Distributions
