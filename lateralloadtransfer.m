@@ -43,7 +43,7 @@ x0 = [0 0 0 0];
 figure(1);
 plot(t, x(:,1)*180/pi, 'LineWidth', 1.5)
 hold on
-plot(t, x(:,2)*180/pi, 'LineWidth', 1.5)
+plot(t, x(:,3)*180/pi, 'LineWidth', 1.5)
 
 xlabel('Time (s)')
 ylabel('Roll Angle (deg)')
