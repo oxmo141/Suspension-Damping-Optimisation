@@ -29,8 +29,12 @@ car.TR = (3047.62 + 2912.586)/2 * 180/pi;
 front.springs = [200, 225, 250, 300];
 rear.springs = [200, 225, 250, 300];
 
-front.ks = front.springs(2) * 175.12684; % spring rate
+front.ks = front.springs(4) * 175.12684; % spring rate
 rear.ks = rear.springs(1) * 175.12684;
+
+front.cs = 2300;
+rear.cs = 2300;
+
 car.Kt = (10^3)/0.0122; % tyre radial rate
 front.MR = 1.0; % motion ratio of coil over
 rear.MR = 1.0;
@@ -46,6 +50,10 @@ car.h_roll = car.cgh - ((car.a*front.RC + car.b*rear.RC)/(car.a+car.b));
 
 front.ks_roll = 0.5*front.kw*car.track^2; % spring roll rate Nm/rad
 rear.ks_roll = 0.5*rear.kw*car.track^2;
+
+front.cs_roll = 0.5*front.cs*car.track^2;
+rear.cs_roll = 0.5*rear.cs*car.track^2;
+
 front.ARB = 0;
 rear.ARB = 0;
 front.k_roll = front.ks_roll+front.ARB;
