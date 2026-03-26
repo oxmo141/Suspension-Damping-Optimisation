@@ -18,7 +18,7 @@ kf = front.k_roll;
 kr = rear.k_roll;
 
 % roll damping
-cf = 3000;
+cf = front.cs_roll;
 cr = rear.cs_roll;
 
 I = 182.24965; % roll inertia
@@ -60,7 +60,7 @@ ylabel('Angular Velocity (deg/s)')
 legend('Front roll Velocity','Rear roll Velocity')
 grid on
 
-% Geomtric Load Transfer
+% Geometric Load Transfer
 
 lat_g = 1;
 

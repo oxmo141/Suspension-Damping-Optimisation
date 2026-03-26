@@ -13,8 +13,8 @@ mr = rearunsprung.m;
 
 
 % Suspension stiffness
-kf = front.Kr;
-kr = rear.Kr;
+kf = front.kw + car.Kt;
+kr = rear.kw + car.Kt;
 
 % Undamped
 
@@ -35,12 +35,12 @@ mf = frontunsprung.m;
 mr = rearunsprung.m;
 
 % Damping
-cf = 2300;
+cf = 4000;
 cr = 2300;
 
 % Suspension stiffness
-kf = front.Kr;
-kr = rear.Kr;
+kf = front.kw + car.Kt;
+kr = rear.kw + car.Kt;
 
 % Tire stiffness
 k_t = car.Kt;
